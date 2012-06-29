@@ -20,6 +20,9 @@ Bundle 'php.vim--Garvin'
 " javascript
 Bundle 'jslint.vim'
 
+" coffee-script
+Bundle 'vim-coffee-script'
+
 "
 filetype on
 filetype indent on
@@ -74,7 +77,7 @@ set history=200
 " reopening a file
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-  au BufWritePre * :%s/\s\+$//e
+  " au BufWritePre * :%s/\s\+$//e
 endif
 
 " オムニ
