@@ -1,4 +1,5 @@
 source /etc/vim/vimrc
+
 " vundle
 filetype off
 
@@ -23,6 +24,9 @@ Bundle 'jslint.vim'
 " coffee-script
 Bundle 'vim-coffee-script'
 
+" stylesheet less
+Bundle 'groenewege/vim-less'
+
 "
 filetype on
 filetype indent on
@@ -46,11 +50,17 @@ set is
 " インデント幅
 set shiftwidth=2
 
-set list
+" set list
 
 " マウス
 set mouse=a
 set ttymouse=xterm2
+
+" カレント行をハイライト
+set cursorline
+
+" ハイライトサーチ
+set hlsearch
 
 " タブ文字無効
 set expandtab
@@ -79,6 +89,10 @@ if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
   " au BufWritePre * :%s/\s\+$//e
 endif
+
+" エンコーディング自動判別
+set encoding=utf-8
+set fileencodings=utf-8,ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp,sjis,cp932,utf-8
 
 " オムニ
 imap <C-L> <C-x><C-o>
