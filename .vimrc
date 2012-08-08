@@ -8,11 +8,16 @@ call vundle#rc()
 
 Bundle 'gmarik/vundle'
 
+Bundle 'scrooloose/nerdtree'
 Bundle 'vim-ruby/vim-ruby'
 " Bundle 'rails.vim'
 Bundle 'tpope/vim-rails'
 Bundle 'AutoComplPop'
+" Bundle 'gmarik/snipmate.vim'
 Bundle 'mru.vim'
+
+" colors and themes
+Bundle 'altercation/vim-colors-solarized'
 Bundle 'molokai'
 
 " php
@@ -36,14 +41,21 @@ filetype plugin on
 set t_Co=256
 " colorscheme evening
 " colorscheme delek
-colorscheme molokai
+" colorscheme molokai
+
+set background=dark " 3行で1設定
+let g:solarized_termcolors=256
+colorscheme solarized
 
 " 右端で折り返す
 " set nowrap
 set wrap
 
 " インクリメンタルサーチ
-set is
+set incsearch
+
+" ハイライトサーチ
+set hlsearch
 
 " インデント
 " set ai
@@ -58,9 +70,6 @@ set ttymouse=xterm2
 
 " カレント行をハイライト
 set cursorline
-
-" ハイライトサーチ
-set hlsearch
 
 " タブ文字無効
 set expandtab
@@ -92,7 +101,7 @@ endif
 
 " エンコーディング自動判別
 set encoding=utf-8
-set fileencodings=utf-8,ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp,sjis,cp932,utf-8
+set fileencodings=utf-8,ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp,sjis,cp932
 
 " オムニ
 imap <C-L> <C-x><C-o>
@@ -127,3 +136,9 @@ let g:rubycomplete_classes_in_global = 1
 let g:rubycomplete_rails = 1
 
 let g:rails_level = 4
+
+" Nerdtree
+let NERDTreeWinPos="right"
+let NERDTreeWinSize=25
+nmap <F9> :NERDTreeToggle<cr>
+
