@@ -1,4 +1,6 @@
-source /etc/vim/vimrc
+" source /etc/vim/vimrc
+set nocompatible
+syntax enable
 
 " vundle
 filetype off
@@ -9,10 +11,15 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 Bundle 'scrooloose/nerdtree'
+
+" syntac check
+Bundle 'scrooloose/syntastic'
+
 Bundle 'vim-ruby/vim-ruby'
-" Bundle 'rails.vim'
+" Bundle 'm2ym/rsense'
 Bundle 'tpope/vim-rails'
-Bundle 'AutoComplPop'
+" Bundle 'AutoComplPop'
+Bundle 'Shougo/neocomplcache'
 " Bundle 'gmarik/snipmate.vim'
 Bundle 'mru.vim'
 
@@ -24,7 +31,7 @@ Bundle 'molokai'
 Bundle 'php.vim--Garvin'
 
 " javascript
-Bundle 'jslint.vim'
+" Bundle 'jslint.vim'
 
 " coffee-script
 Bundle 'vim-coffee-script'
@@ -41,21 +48,20 @@ filetype plugin on
 set t_Co=256
 " colorscheme evening
 " colorscheme delek
-" colorscheme molokai
+colorscheme molokai
 
 set background=dark " 3行で1設定
-let g:solarized_termcolors=256
-colorscheme solarized
+" let g:solarized_termcolors=256
+" colorscheme solarized
 
 " 右端で折り返す
 " set nowrap
 set wrap
 
-" インクリメンタルサーチ
-set incsearch
-
-" ハイライトサーチ
-set hlsearch
+" Search
+set incsearch " インクリメンタルサーチ
+set hlsearch " ハイライトサーチ
+set ignorecase " 大文字小文字を無視して検索
 
 " インデント
 " set ai
@@ -130,15 +136,31 @@ endfunction
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 " }}} Autocompletion using the TAB key
 
-" ruby
-let g:rubycomplete_buffer_loading = 1
-let g:rubycomplete_classes_in_global = 1
-let g:rubycomplete_rails = 1
-
-let g:rails_level = 4
+" let g:rails_level = 1
 
 " Nerdtree
 let NERDTreeWinPos="right"
 let NERDTreeWinSize=25
 nmap <F9> :NERDTreeToggle<cr>
 
+" NeoComplCache
+let g:neocomplcache_enable_at_startup = 1
+
+" AutoComplPop like behavior.
+let g:neocomplcache_enable_auto_select = 1
+
+" Enable heavy omni completion.
+if filereadable(expand('~/.vim/bundle/rsense/bin/rsense'))
+  let g:rsenseUseOmniFunc = 1
+  let g:rsenseHome = expand('~/.vim/bundle/rsense')
+
+  if !exists('g:neocomplcache_omni_patterns')
+    let g:neocomplcache_omni_patterns = {}
+  endif
+  " let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+else
+  " ruby
+  let g:rubycomplete_buffer_loading = 1
+  let g:rubycomplete_classes_in_global = 1
+  let g:rubycomplete_rails = 0
+endif
