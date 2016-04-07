@@ -5,40 +5,50 @@ syntax enable
 " vundle
 filetype off
 
-set rtp+=~/.vim/bundle/vundle
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-Bundle 'gmarik/vundle'
+Plugin 'VundleVim/Vundle.vim'
 
-Bundle 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdtree'
 
 " syntac check
-Bundle 'scrooloose/syntastic'
+Plugin 'scrooloose/syntastic'
 
-Bundle 'vim-ruby/vim-ruby'
-" Bundle 'm2ym/rsense'
-Bundle 'tpope/vim-rails'
-" Bundle 'AutoComplPop'
-Bundle 'Shougo/neocomplcache'
-" Bundle 'gmarik/snipmate.vim'
-Bundle 'mru.vim'
+Plugin 'vim-ruby/vim-ruby'
+" Plugin 'm2ym/rsense'
+Plugin 'tpope/vim-rails'
+" Plugin 'AutoComplPop'
+Plugin 'Shougo/neocomplcache'
+" Plugin 'gmarik/snipmate.vim'
+Plugin 'mru.vim'
 
 " colors and themes
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'molokai'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'molokai'
+
+" search
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'rking/ag.vim'
 
 " php
-Bundle 'php.vim--Garvin'
+Plugin 'php.vim--Garvin'
 
 " javascript
-" Bundle 'jslint.vim'
+" Plugin 'jslint.vim'
 
 " coffee-script
-Bundle 'vim-coffee-script'
+Plugin 'vim-coffee-script'
 
-" stylesheet less
-Bundle 'groenewege/vim-less'
+" elixir
+Plugin 'elixir-lang/vim-elixir'
 
+" stylesheet
+Plugin 'groenewege/vim-less'
+Plugin 'JulesWang/css.vim' " only necessary if your Vim version < 7.4
+Plugin 'cakebaker/scss-syntax.vim'
+
+call vundle#end()
 "
 filetype on
 filetype indent on
@@ -71,7 +81,7 @@ set shiftwidth=2
 " set list
 
 " マウス
-set mouse=a
+" set mouse=a
 set ttymouse=xterm2
 
 " カレント行をハイライト
@@ -136,7 +146,7 @@ endfunction
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 " }}} Autocompletion using the TAB key
 
-" let g:rails_level = 1
+let g:rails_level = 1
 
 " Nerdtree
 let NERDTreeWinPos="right"
@@ -148,6 +158,7 @@ let g:neocomplcache_enable_at_startup = 1
 
 " AutoComplPop like behavior.
 let g:neocomplcache_enable_auto_select = 1
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " Enable heavy omni completion.
 if filereadable(expand('~/.vim/bundle/rsense/bin/rsense'))
@@ -163,4 +174,24 @@ else
   let g:rubycomplete_buffer_loading = 1
   let g:rubycomplete_classes_in_global = 1
   let g:rubycomplete_rails = 0
+endif
+
+" ctrlp
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+set wildignore+=*.png,*.eot,*.swf,*.woff,*.svg,*.ttf
+let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
+" let g:ctrlp_user_command = 'ag %s -l'
+let g:ctrlp_clear_cache_on_exit = 0 " 終了時キャッシュをクリアしない
+let g:ctrlp_mruf_max            = 500 " MRUの最大記録数
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll|png|eot|swf|woff|svg|ttf)$',
+  \ 'link': 'some_bad_symbolic_links',
+  \ }
+
+" 最近使ったファイルから検索
+" nnoremap <silent> <C-m> :CtrlPMRUFiles<CR>
+if executable('ag')
+  let g:ctrlp_use_caching=0
+  let g:ctrlp_user_command='ag %s -i --nocolor --nogroup -g ""'
 endif
