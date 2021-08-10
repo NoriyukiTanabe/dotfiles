@@ -101,6 +101,9 @@ set viminfo='20,\"500   " read/write a .viminfo file, don't store more
 " コマンドラインヒストリー
 set history=200
 
+" クリップボード
+set clipboard+=autoselect " マウスで選択したらクリップボード転送
+
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
 if has("autocmd")
