@@ -18,12 +18,13 @@ fi
 autoload -Uz vcs_info
 setopt prompt_subst # プロンプトが表示されるたびにプロンプト文字列を評価、置換
 zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' unstagedstr "%F{red}!"
+zstyle ':vcs_info:git:*' unstagedstr "%F{red}*"
 zstyle ':vcs_info:git:*' stagedstr "%F{yellow}+"
 zstyle ':vcs_info:*' formats "%F{green}[%b]%c%u%m%f"
 zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
 zstyle ':vcs_info:*' actionformats '[%b|%a]'
 precmd() { vcs_info }
+
 +vi-git-untracked() {
   if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
      git status --porcelain | grep -m 1 '^??' &>/dev/null
