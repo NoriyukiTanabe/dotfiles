@@ -5,39 +5,42 @@ syntax enable
 " vundle
 filetype off
 
-set rtp+=~/.vim/bundle/vundle
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 
-Bundle 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdtree'
 
 " syntac check
-Bundle 'scrooloose/syntastic'
+Plugin 'scrooloose/syntastic'
 
-Bundle 'vim-ruby/vim-ruby'
-" Bundle 'm2ym/rsense'
-Bundle 'tpope/vim-rails'
-" Bundle 'AutoComplPop'
-Bundle 'Shougo/neocomplcache'
-" Bundle 'gmarik/snipmate.vim'
-Bundle 'mru.vim'
+Plugin 'vim-ruby/vim-ruby'
+" Plugin 'm2ym/rsense'
+Plugin 'tpope/vim-rails'
+" Plugin 'AutoComplPop'
+Plugin 'Shougo/neocomplcache'
+" Plugin 'gmarik/snipmate.vim'
+Plugin 'mru.vim'
 
 " colors and themes
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'molokai'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'molokai'
+Plugin 'w0ng/vim-hybrid'
 
 " php
-Bundle 'php.vim--Garvin'
+Plugin 'php.vim--Garvin'
 
 " javascript
-" Bundle 'jslint.vim'
+" Plugin 'jslint.vim'
 
 " coffee-script
-Bundle 'vim-coffee-script'
+Plugin 'vim-coffee-script'
 
 " stylesheet less
-Bundle 'groenewege/vim-less'
+Plugin 'groenewege/vim-less'
+
+call vundle#end()
 
 "
 filetype on
@@ -48,7 +51,7 @@ filetype plugin on
 set t_Co=256
 " colorscheme evening
 " colorscheme delek
-colorscheme molokai
+colorscheme hybrid
 
 set background=dark " 3行で1設定
 " let g:solarized_termcolors=256
