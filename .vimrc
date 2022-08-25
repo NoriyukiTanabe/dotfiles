@@ -34,6 +34,9 @@ Plugin 'php.vim--Garvin'
 " javascript
 " Plugin 'jslint.vim'
 
+" terraform
+Plugin 'hashivim/vim-terraform'
+
 " coffee-script
 Plugin 'vim-coffee-script'
 

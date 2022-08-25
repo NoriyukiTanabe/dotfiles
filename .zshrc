@@ -16,6 +16,9 @@ source /Users/tanabe.noriyuki/.rvm/scripts/rvm
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
+# asdf
+. /usr/local/opt/asdf/libexec/asdf.sh
+
 # zsh-completions
 if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
@@ -71,3 +74,12 @@ PROMPT='%~${vcs_info_msg_0_} %# '
 ##################
 export EDITOR=vim
 eval "$(direnv hook zsh)"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/tanabe.noriyuki/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/tanabe.noriyuki/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/tanabe.noriyuki/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/tanabe.noriyuki/google-cloud-sdk/completion.zsh.inc'; fi
+
+# kubectl
+[[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
